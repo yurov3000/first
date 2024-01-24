@@ -4,25 +4,25 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 
 // класс с главным методом программы
-class InputConsoleDemo 
+class Demo
 {
-    // Главный метод программы
-    static void Main() 
+    const string txtTitle = "Перевод в другие системы счисления";
+    static void Main()
     {
-        string txt, txtMes, txtTitle = "Расчёт соседних чисел";
-        int res1, res2, txtInt;
+        byte num, baseInt;
+        string txtMes;
 
-        txt = Interaction.InputBox("Введите любое число");
+        num = (byte) Int32.Parse(
+            Interaction.InputBox("Введите число")
+            );
 
-        txtInt = Int32.Parse(txt);
-        res1 = txtInt - 1;
-        res2 = txtInt + 1;
+        baseInt = (byte)Int32.Parse(
+            Interaction.InputBox("Введите систему счисления \n" +
+                                 " доступные системы: 2, 8, 16")
+            );
 
-        txtMes = $"Тройка чисел: {res1} - {txtInt} - {res2}";
-
-        MessageBox.Show(txtMes, txtTitle, MessageBoxButtons.OK);
+        txtMes = $"Перевод выполнен: \n \n{Convert.ToString(num,baseInt)}";
+        MessageBox.Show(txtMes,txtTitle,MessageBoxButtons.OK);
+        
     }
 }
-
-
-// Закончили на 60 странице. Васильев C#.
