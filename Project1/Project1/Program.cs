@@ -16,42 +16,52 @@ class Demo
         byte num, baseInt;
         string txtMes, txtInt, txtBaseInt;
         MessageBoxIcon icon;
-        txtInt = Interaction.InputBox("Введите число");
+        bool flag = true;
 
-        // Проверка на пустую строку
-        if (txtInt != "")
+        // создали цикл для непрерывного выполнения программы
+        while (flag)
         {
-            // Перевод из полученной строки в число
-            num = (byte)Int32.Parse(txtInt);
+            txtInt = Interaction.InputBox("Введите число");
 
-            // Вводим систему счисления
-            txtBaseInt = Interaction.InputBox("Введите систему счисления \n" +
-                                     " доступные системы: 2, 8, 16");
-            // проверка на пустой ввод графы системы счисления
-            if(txtBaseInt != "")
+            // Проверка на пустую строку
+            if (txtInt != "")
             {
-                // формируем иконку сообщения
-                icon = MessageBoxIcon.Information;
-                // переводим строку от пользователя в число
-                baseInt = (byte)Int32.Parse(txtBaseInt);
+                // Перевод из полученной строки в число
+                num = (byte)Int32.Parse(txtInt);
 
-                txtMes = $"Перевод выполнен: \n \n{Convert.ToString(num, baseInt)}";
-                MessageBox.Show(txtMes, txtTitle, MessageBoxButtons.OK, icon);
+                // Вводим систему счисления
+                txtBaseInt = Interaction.InputBox("Введите систему счисления \n" +
+                                         " доступные системы: 2, 8, 16");
+                // проверка на пустой ввод графы системы счисления
+                if (txtBaseInt != "")
+                {
+                    // формируем иконку сообщения
+                    icon = MessageBoxIcon.Information;
+                    // переводим строку от пользователя в число
+                    baseInt = (byte)Int32.Parse(txtBaseInt);
+
+                    txtMes = $"Перевод выполнен: \n \n{Convert.ToString(num, baseInt)}";
+                    MessageBox.Show(txtMes, txtTitle, MessageBoxButtons.OK, icon);
+                }
+                else
+                {
+                    // формируем и выводим строку ошибки
+                    icon = MessageBoxIcon.Error;
+                    MessageBox.Show("Вы не ввели систему счисления!", txtTitle, MessageBoxButtons.OK, icon);
+                }
+
             }
             else
             {
                 // формируем и выводим строку ошибки
                 icon = MessageBoxIcon.Error;
-                MessageBox.Show("Вы не ввели систему счисления!", txtTitle, MessageBoxButtons.OK, icon);
+                MessageBox.Show("Вы не ввели число!", txtTitle, MessageBoxButtons.OK, icon);
+                flag = false;
+                break;
+
             }
-            
         }
-        else
-        {
-            // формируем и выводим строку ошибки
-            icon = MessageBoxIcon.Error;
-            MessageBox.Show("Вы не ввели число!", txtTitle, MessageBoxButtons.OK, icon);
-        }
+        
         
     }
 }
